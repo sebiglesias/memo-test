@@ -27,7 +27,7 @@
             <div class="controls-row">
                 <div class="grid-selector">
                     <label for="grid-size" class="grid-label">Cards:</label>
-                    <select id="grid-size" class="grid-select">
+                    <select id="grid-size" class="grid-select" aria-label="Choose number of cards for the game">
                         <option value="12">12 Cards</option>
                         <option value="16" selected>16 Cards</option>
                         <option value="20">20 Cards</option>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div id="game-board" class="game-board"></div>
+        <div id="game-board" class="game-board" role="region" aria-label="Game board"></div>
 
         <div id="victory-screen" class="victory-screen hidden">
             <div class="victory-content">

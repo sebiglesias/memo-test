@@ -79,6 +79,9 @@ function createCard(icon, index) {
     const cardElement = document.createElement('div');
     cardElement.className = 'card';
     cardElement.dataset.index = index;
+    cardElement.setAttribute('role', 'button');
+    cardElement.setAttribute('tabindex', '0');
+    cardElement.setAttribute('aria-label', `Card ${index + 1}, hidden`);
 
     const cardFront = document.createElement('div');
     cardFront.className = 'card-front';
@@ -96,6 +99,14 @@ function createCard(icon, index) {
     cardElement.appendChild(cardBack);
 
     cardElement.addEventListener('click', () => handleCardClick(index));
+    
+    // Add keyboard support
+    cardElement.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleCardClick(index);
+        }
+    });
 
     return {
         element: cardElement,
@@ -170,6 +181,7 @@ function flipCard(index) {
     const card = cards[index];
     card.element.classList.add('flipped');
     card.isFlipped = true;
+    card.element.setAttribute('aria-label', `Card ${index + 1}, showing ${getIconName(card.icon)}`);
 }
 
 // Unflip a card
@@ -177,6 +189,7 @@ function unflipCard(index) {
     const card = cards[index];
     card.element.classList.remove('flipped');
     card.isFlipped = false;
+    card.element.setAttribute('aria-label', `Card ${index + 1}, hidden`);
 }
 
 // Mark card as matched
@@ -184,6 +197,8 @@ function markAsMatched(index) {
     const card = cards[index];
     card.element.classList.add('matched');
     card.isMatched = true;
+    card.element.setAttribute('aria-label', `Card ${index + 1}, matched ${getIconName(card.icon)}`);
+    card.element.setAttribute('tabindex', '-1');
 }
 
 // Start timer
@@ -225,6 +240,43 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+// Get icon name for accessibility
+function getIconName(icon) {
+    const iconNames = {
+        '🍎': 'apple',
+        '🍊': 'orange',
+        '🍋': 'lemon',
+        '🍌': 'banana',
+        '🍇': 'grapes',
+        '🍓': 'strawberry',
+        '🍑': 'peach',
+        '🍒': 'cherry',
+        '🍉': 'watermelon',
+        '🍍': 'pineapple',
+        '🐶': 'dog',
+        '🐱': 'cat',
+        '🐭': 'mouse',
+        '🐹': 'hamster',
+        '🐰': 'rabbit',
+        '🦊': 'fox',
+        '🐻': 'bear',
+        '🐼': 'panda',
+        '🐨': 'koala',
+        '🐯': 'tiger',
+        '🌸': 'cherry blossom',
+        '🌺': 'hibiscus',
+        '🌻': 'sunflower',
+        '🌷': 'tulip',
+        '🌹': 'rose',
+        '💐': 'bouquet',
+        '🌼': 'blossom',
+        '🏵️': 'rosette',
+        '🌿': 'herb',
+        '🍀': 'clover'
+    };
+    return iconNames[icon] || 'icon';
 }
 
 // Event listeners
