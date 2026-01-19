@@ -460,20 +460,24 @@ header {
     }
 
     .game-board.grid-12,
-    .game-board.grid-16,
+    .game-board.grid-16 {
+        grid-template-columns: repeat(2, 120px);
+        gap: 10px;
+    }
+    
     .game-board.grid-20 {
-        grid-template-columns: repeat(3, 100px);
+        grid-template-columns: repeat(3, 120px);
         gap: 10px;
     }
 
     .card {
-        width: 100px;
-        height: 100px;
-        font-size: 45px;
+        width: 120px;
+        height: 120px;
+        font-size: 50px;
     }
 
     .card-icon {
-        font-size: 45px;
+        font-size: 50px;
     }
 
     .victory-title {
