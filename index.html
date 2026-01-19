@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Matching Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="game-title">Memory Matching Game</h1>
+        </header>
+
+        <div class="game-controls">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-label">Moves:</span>
+                    <span class="stat-value" id="moves">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Time:</span>
+                    <span class="stat-value" id="time">0:00</span>
+                </div>
+            </div>
+            
+            <div class="controls-row">
+                <div class="grid-selector">
+                    <label for="grid-size" class="grid-label">Cards:</label>
+                    <select id="grid-size" class="grid-select" aria-label="Choose number of cards for the game">
+                        <option value="12">12 Cards</option>
+                        <option value="16" selected>16 Cards</option>
+                        <option value="20">20 Cards</option>
+                    </select>
+                </div>
+                <button id="new-game-btn" class="new-game-btn">New Game</button>
+            </div>
+        </div>
+
+        <div id="game-board" class="game-board" role="region" aria-label="Game board"></div>
+
+        <div id="victory-screen" class="victory-screen hidden">
+            <div class="victory-content">
+                <h2 class="victory-title">🎉 Congratulations! 🎉</h2>
+                <p class="victory-message">You did a wonderful job!</p>
+                <div class="victory-stats">
+                    <div class="victory-stat">
+                        <span class="victory-stat-label">Moves:</span>
+                        <span class="victory-stat-value" id="final-moves">0</span>
+                    </div>
+                    <div class="victory-stat">
+                        <span class="victory-stat-label">Time:</span>
+                        <span class="victory-stat-value" id="final-time">0:00</span>
+                    </div>
+                </div>
+                
+                <!-- AdSense Placeholder -->
+                <div class="adsense-placeholder">
+                    <p class="adsense-text">Advertisement Space</p>
+                </div>
+                
+                <button id="play-again-btn" class="play-again-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
